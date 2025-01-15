@@ -27,12 +27,6 @@
             left: 0;
             transform: translateY(-50%);
         }
-        #newGameButton {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            display: none; /* Initially hidden */
-        }
         .balloon {
             position: center;
             bottom: 0;
@@ -51,6 +45,7 @@
             margin: 0 auto;
             background-color: #f0f0f0; /* Add a background color if needed */
         }
+        
     </style>
 </head>
 <body>
@@ -66,23 +61,19 @@
     <div id="score">Score: 0</div>
     <button id="startButton">Start Game
     </button>
-    <button id="newGameButton">Victory titees</button>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
             const startButton = document.getElementById('startButton');
-            const newGameButton = document.getElementById('newGameButton');
+            
 
             startButton.addEventListener('click', () => {
                 startButton.style.display = 'none';
-                newGameButton.style.display = 'none';
+                
                 // Start game logic here
             });
 
-            function showNewGameButton() {
-                newGameButton.style.display = 'inline';
-            }
-
+        
             const paddle = document.getElementById('paddle');
             const gameArea = document.getElementById('gameArea');
             const ball = document.getElementById('ball');
@@ -119,13 +110,14 @@
                 const noBlocksInFrame = blocks.length === 0;
 
                 if (ballOutOfFrame || noBlocksInFrame) {
-                    showNewGameButton();
+                    ;
                     // Additional game over logic here
                 }
-            }
-
+            
+            
             // Call checkGameOver() at appropriate intervals or events
             setInterval(checkGameOver, 100); // Example: check every 100ms
+            }
         });
     </script>
     <script src="script.js"></script>
