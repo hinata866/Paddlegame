@@ -35,6 +35,12 @@
         .block {
             background-color: green;
         }
+        .brick {
+            width: 60px;
+            height: 20px;
+            background-color: blue;
+            position: absolute;
+        }
     </style>
 </head>
 <body>
@@ -45,6 +51,7 @@
         <div id="rightWall" class="wall"></div>
         <div id="topWall" class="wall"></div>
         <!-- Add blocks dynamically using JavaScript -->
+        <div id="bricks"></div>
     </div>
     <div id="score">Score: 0</div>
     <div id="victoryMessage">
@@ -54,6 +61,39 @@
             <div class="balloon"></div>
         </div>
     <button id="startButton">Start Game</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bricksContainer = document.getElementById('bricks');
+            const rows = 5;
+            const cols = 15;
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    const brick = document.createElement('div');
+                    brick.classList.add('brick');
+                    brick.style.top = `${row * 22}px`;
+                    brick.style.left = `${col * 62}px`;
+                    bricksContainer.appendChild(brick);
+                }
+            }
+
+            const bricks = document.querySelectorAll('.brick');
+            let bricksBroken = 0;
+
+            function checkVictory() {
+                if (bricksBroken === bricks.length) {
+                    document.getElementById('victoryMessage').style.display = 'block';
+                }
+            }
+
+            bricks.forEach(brick => {
+                brick.addEventListener('click', () => {
+                    brick.style.display = 'none';
+                    bricksBroken++;
+                    checkVictory();
+                });
+            });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
