@@ -9,6 +9,29 @@
         #score {
             color: red;
         }
+       
+        
+        @keyframes rise {
+            0% { bottom: 0; }
+            100% { bottom: 100%; }
+        }
+        .block {
+            width: 60px; /* Adjust width if necessary */
+            height: 20px; /* Adjust height if necessary */
+            background-color: green;
+            position: absolute;
+        }
+        #startButton {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        #newGameButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
         #victoryMessage {
             display: none;
             position: absolute;
@@ -33,27 +56,6 @@
             background-color: red;
             border-radius: 50%;
             animation: rise 5s infinite;
-        }
-        @keyframes rise {
-            0% { bottom: 0; }
-            100% { bottom: 100%; }
-        }
-        .block {
-            width: 60px; /* Adjust width if necessary */
-            height: 20px; /* Adjust height if necessary */
-            background-color: green;
-            position: absolute;
-        }
-        #startButton {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-        }
-        #newGameButton {
-            position: absolute;
-            top: 10px;
-            left: 10px;
         }
         #gameArea {
             position: relative;
