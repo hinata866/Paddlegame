@@ -26,10 +26,10 @@
             flex-direction: column;
         }
         .balloon {
-            position: absolute;
+            position: center;
             bottom: 0;
-            width: 20px;
-            height: 30px;
+            width: 60px;
+            height: 80px;
             background-color: red;
             border-radius: 50%;
             animation: rise 5s infinite;
@@ -77,8 +77,8 @@
         <div id="bricks"></div>
     </div>
     <div id="score">Score: 0</div>
-    <div id="victoryMessage" style="display: inline; margin-left: 20px;">
-        VICTORY
+    <div id="victoryMessage">
+        Victory tittees
         <div class="balloon"></div>
         <div class="balloon"></div>
         <div class="balloon"></div>
@@ -101,6 +101,11 @@
                 newGameButton.style.display = 'inline';
             }
 
+            function showVictoryMessage() {
+                const victoryMessage = document.getElementById('victoryMessage');
+                victoryMessage.style.display = 'flex';
+            }
+
             // Call showNewGameButton() when the game is over
             // For example:
             // if (gameOver) {
@@ -109,12 +114,48 @@
 
             const paddle = document.getElementById('paddle');
             const gameArea = document.getElementById('gameArea');
+            const ball = document.getElementById('ball');
+            const bricks = document.getElementById('bricks');
 
             gameArea.addEventListener('mousemove', (event) => {
                 const rect = gameArea.getBoundingClientRect();
                 const mouseX = event.clientX - rect.left;
-                paddle.style.left = `${mouseX - paddle.offsetWidth / 2}px`;
+                const paddleWidth = paddle.offsetWidth;
+                const gameAreaWidth = gameArea.offsetWidth;
+
+                // Ensure the paddle stays within the game area
+                if (mouseX - paddleWidth / 2 < 0) {
+                    paddle.style.left = '0px';
+                } else if (mouseX + paddleWidth / 2 > gameAreaWidth) {
+                    paddle.style.left = `${gameAreaWidth - paddleWidth}px`;
+                } else {
+                    paddle.style.left = `${mouseX - paddleWidth / 2}px`;
+                }
             });
+
+            function checkGameOver() {
+                const ballRect = ball.getBoundingClientRect();
+                const gameAreaRect = gameArea.getBoundingClientRect();
+                const blocks = document.querySelectorAll('.block');
+
+                const ballOutOfFrame = (
+                    ballRect.top > gameAreaRect.bottom ||
+                    ballRect.bottom < gameAreaRect.top ||
+                    ballRect.left > gameAreaRect.right ||
+                    ballRect.right < gameAreaRect.left
+                );
+
+                const noBlocksInFrame = blocks.length === 0;
+
+                if (ballOutOfFrame || noBlocksInFrame) {
+                    showNewGameButton();
+                    showVictoryMessage();
+                    // Additional game over logic here
+                }
+            }
+
+            // Call checkGameOver() at appropriate intervals or events
+            setInterval(checkGameOver, 100); // Example: check every 100ms
         });
     </script>
     <script src="script.js"></script>
