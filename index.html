@@ -54,12 +54,12 @@
         <div id="bricks"></div>
     </div>
     <div id="score">Score: 0</div>
-    <div id="victoryMessage">
-                    VICTORY
-            <div class="balloon"></div>
-            <div class="balloon"></div>
-            <div class="balloon"></div>
-        </div>
+    <div id="victoryMessage" style="display: inline; margin-left: 20px;">
+        VICTORY
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
     <button id="startButton">Start Game</button>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -81,7 +81,7 @@
 
             function checkVictory() {
                 if (bricksBroken === bricks.length) {
-                    document.getElementById('victoryMessage').style.display = 'block';
+                    document.getElementById('victoryMessage').style.display = 'inline';
                 }
             }
 
