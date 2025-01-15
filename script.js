@@ -3,6 +3,7 @@ const paddle = document.getElementById('paddle');
 const ball = document.getElementById('ball');
 const scoreDisplay = document.getElementById('score');
 const startButton = document.getElementById('startButton');
+const victoryMessage = document.getElementById('victoryMessage');
 let ballDirectionX = 2;
 let ballDirectionY = 2;
 let score = 0;
@@ -10,9 +11,9 @@ let gameRunning = false;
 let balls = [{ element: ball, directionX: 2, directionY: 2 }];
 
 // Create blocks dynamically
-function createBlocks() {
-    const rows = 7;
-    const cols = 24;
+function createBricks() {
+    const rows = 5;
+    const cols = 15;
     const rewards = ['longer-paddle', 'extra-10-points', 'extra-20-points', 'none'];
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
@@ -34,7 +35,7 @@ function resetGame() {
     score = 0;
     scoreDisplay.textContent = 'Score: ' + score;
     document.querySelectorAll('.block').forEach(block => block.remove());
-    createBlocks();
+    createBricks();
     balls = [{ element: ball, directionX: 2, directionY: 2 }];
 }
 
@@ -98,6 +99,14 @@ function createExtraBalls() {
     }
 }
 
+function checkVictory() {
+    if (document.querySelectorAll('.block').length === 0) {
+        gameRunning = false;
+        victoryMessage.style.display = 'block';
+        startButton.style.display = 'block';
+    }
+}
+
 function moveBall() {
     if (!gameRunning) return;
 
@@ -146,5 +155,6 @@ function moveBall() {
         ball.style.left = (ball.offsetLeft + ballObj.directionX) + 'px';
     });
 
+    checkVictory();
     requestAnimationFrame(moveBall);
 }
