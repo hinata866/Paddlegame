@@ -5,6 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paddle Ball Game</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #score {
+            color: red;
+        }
+        #victoryMessage {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: gold;
+            text-align: center;
+        }
+        .balloon {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+            animation: rise 5s infinite;
+        }
+        @keyframes rise {
+            0% { bottom: 0; }
+            100% { bottom: 100%; }
+        }
+        .block {
+            background-color: green;
+        }
+    </style>
 </head>
 <body>
     <div id="gameArea">
@@ -16,6 +47,12 @@
         <!-- Add blocks dynamically using JavaScript -->
     </div>
     <div id="score">Score: 0</div>
+    <div id="victoryMessage">
+                    VICTORY
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+        </div>
     <button id="startButton">Start Game</button>
     <script src="script.js"></script>
 </body>
