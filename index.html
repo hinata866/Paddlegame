@@ -45,6 +45,13 @@
             margin: 0 auto;
             background-color: #f0f0f0; /* Add a background color if needed */
         }
+        #victoryButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Initially hidden */
+        }
         
     </style>
 </head>
@@ -61,16 +68,21 @@
     <div id="score">Score: 0</div>
     <button id="startButton">Start Game
     </button>
+    <button id="victoryButton">Victory tiitteeess</button>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
             const startButton = document.getElementById('startButton');
-            
+            const victoryButton = document.getElementById('victoryButton');
 
             startButton.addEventListener('click', () => {
                 startButton.style.display = 'none';
-                
+                victoryButton.style.display = 'none';
                 // Start game logic here
+            });
+
+            victoryButton.addEventListener('click', () => {
+                location.reload(); // Reload the page to reset the game
             });
 
         
@@ -110,14 +122,13 @@
                 const noBlocksInFrame = blocks.length === 0;
 
                 if (ballOutOfFrame || noBlocksInFrame) {
-                    ;
+                    victoryButton.style.display = 'inline';
                     // Additional game over logic here
                 }
-            
-            
+            }
+
             // Call checkGameOver() at appropriate intervals or events
             setInterval(checkGameOver, 100); // Example: check every 100ms
-            }
         });
     </script>
     <script src="script.js"></script>
