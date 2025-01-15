@@ -47,6 +47,11 @@
             background-color: blue;
             position: absolute;
         }
+        #startButton, #newGameButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -67,6 +72,7 @@
         <div class="balloon"></div>
     </div>
     <button id="startButton">Start Game</button>
+    <button id="newGameButton" style="display: none;">New Game</button>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const bricksContainer = document.getElementById('bricks');
@@ -98,6 +104,25 @@
                     checkVictory();
                 });
             });
+
+            const startButton = document.getElementById('startButton');
+            const newGameButton = document.getElementById('newGameButton');
+
+            startButton.addEventListener('click', () => {
+                startButton.style.display = 'none';
+                newGameButton.style.display = 'none';
+                // Start game logic here
+            });
+
+            function showNewGameButton() {
+                newGameButton.style.display = 'inline';
+            }
+
+            // Call showNewGameButton() when the game is over
+            // For example:
+            // if (gameOver) {
+            //     showNewGameButton();
+            // }
         });
     </script>
     <script src="script.js"></script>
