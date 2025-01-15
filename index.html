@@ -36,8 +36,8 @@
             background-color: green;
         }
         .brick {
-            width: 60px;
-            height: 20px;
+            width: 60px; /* Adjust width if necessary */
+            height: 20px; /* Adjust height if necessary */
             background-color: blue;
             position: absolute;
         }
@@ -65,13 +65,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             const bricksContainer = document.getElementById('bricks');
             const rows = 5;
-            const cols = 5; // Changed from 15 to 5
+            const cols = 5;
             for (let row = 0; row < rows; row++) {
                 for (let col = 0; col < cols; col++) {
                     const brick = document.createElement('div');
                     brick.classList.add('brick');
-                    brick.style.top = `${row * 22}px`;
-                    brick.style.left = `${col * 62}px`;
+                    brick.style.top = `${row * 22}px`; // Adjust spacing if necessary
+                    brick.style.left = `${col * 62}px`; // Adjust spacing if necessary
                     bricksContainer.appendChild(brick);
                 }
             }
